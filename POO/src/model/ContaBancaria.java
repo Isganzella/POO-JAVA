@@ -74,6 +74,11 @@ public class ContaBancaria {
 
     }
 
+    public void transferir(Double valor, ContaBancaria contaDestino){
+        this.sacar(valor);
+        contaDestino.depositar(valor);
+    }
+
 
     //#endregion
 
