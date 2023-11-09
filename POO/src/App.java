@@ -1,4 +1,8 @@
+import javax.xml.crypto.Data;
+
 import model.ContaBancaria;
+import model.ContaPoupanca;
+import utils.DataUtil;
 
 public class App {
     public static void main(String[] args) {
@@ -6,7 +10,7 @@ public class App {
         System.out.println();
 
 
-        ContaBancaria c1 = new ContaBancaria("0001", "7452", 5, 100.0);
+        ContaBancaria c1 = new ContaPoupanca("0001", "7452", 5, 100.0);
 
 
         System.out.println("Saldo disponível R$:" + c1.getSaldo());
@@ -16,7 +20,11 @@ public class App {
         System.out.println("\nSaldo disponível R$:" + c1.getSaldo());
 
 
-        c1.sacar(400.00);
+        System.out.println(c1.getDataAbertura());
+
+        var formatado = DataUtil.converteData(c1.getDataAbertura());
+
+        System.out.println(formatado);
 
     }
 
