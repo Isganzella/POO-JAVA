@@ -2,6 +2,8 @@ package model;
 
 import java.util.Date;
 
+import utils.DataUtil;
+
 public class Movimentacao {
 
     //#region atributos
@@ -34,7 +36,9 @@ public class Movimentacao {
 
     @Override
     public String toString(){
-        return "Operação: " + this.getDescricao() + "\nValor: R$" + this.getValor() + "\nData: " + this.getDataMovimentacao();
+
+        String dataFormat = DataUtil.converteData(this.getDataMovimentacao());
+        return "Operação: " + this.getDescricao() + "\nValor: R$" + this.getValor() + "\nData: " + dataFormat;
     }
     
 
