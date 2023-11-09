@@ -2,6 +2,7 @@ import javax.xml.crypto.Data;
 
 import model.ContaBancaria;
 import model.ContaPoupanca;
+import model.Movimentacao;
 import utils.DataUtil;
 
 public class App {
@@ -25,6 +26,10 @@ public class App {
         var formatado = DataUtil.converteData(c1.getDataAbertura());
 
         System.out.println(formatado);
+
+        Movimentacao movimentacao = new Movimentacao("Saque", 100.00);
+
+        System.out.println(movimentacao);
 
     }
 
