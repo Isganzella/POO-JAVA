@@ -1,6 +1,7 @@
 import javax.xml.crypto.Data;
 
 import model.ContaBancaria;
+import model.ContaCorrente;
 import model.ContaPoupanca;
 import model.Movimentacao;
 import utils.DataUtil;
@@ -11,25 +12,13 @@ public class App {
         System.out.println();
 
 
-        ContaBancaria c1 = new ContaPoupanca("0001", "7452", 5, 100.0);
-
-
-        System.out.println("Saldo disponível R$:" + c1.getSaldo());
-
+        ContaBancaria c1 = new ContaCorrente("0001", "7452", 5, 100.0);
+       
         c1.depositar(250.00);
+        c1.sacar(200.0);
 
-        System.out.println("\nSaldo disponível R$:" + c1.getSaldo());
-
-
-        System.out.println(c1.getDataAbertura());
-
-        var formatado = DataUtil.converteData(c1.getDataAbertura());
-
-        System.out.println(formatado);
-
-        Movimentacao movimentacao = new Movimentacao("Saque", 100.00);
-
-        System.out.println(movimentacao);
+       
+        c1.imprimirSaldo();
 
     }
 

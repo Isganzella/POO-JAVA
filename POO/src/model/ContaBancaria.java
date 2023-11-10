@@ -1,18 +1,20 @@
 package model;
 
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.InputMismatchException;
 
 public abstract class ContaBancaria {
     
     //#region atributos
-    private String agencia;
-    private String conta;
-    private Integer digito;
-    private Double saldo;
-    private Double VALOR_MINIMO_DEPOSITO = 10.00;
-    private Date dataAbertura;
+    protected String agencia;
+    protected String conta;
+    protected Integer digito;
+    protected Double saldo;
+    protected ArrayList<Movimentacao> movimentacoes;
+    protected Double VALOR_MINIMO_DEPOSITO = 10.00;
+    protected Date dataAbertura;
     //#endregion atributos
 
     //#region constructors
@@ -22,6 +24,10 @@ public abstract class ContaBancaria {
         this.digito = digito;
         this.saldo = saldoInicial;
         this.dataAbertura = new Date();
+        this.movimentacoes = new ArrayList<Movimentacao>();
+
+        Movimentacao movimentacao = new Movimentacao("Abertura de conta", 100.0);
+        this.movimentacoes.add(movimentacao);
     }
     //#endregion
 
@@ -72,24 +78,31 @@ public abstract class ContaBancaria {
             throw new InputMismatchException("O valor minimo de deposito é R$" + VALOR_MINIMO_DEPOSITO);
         }
         this.saldo += valor;
+
+        Movimentacao deposito = new Movimentacao("Deposito", valor);
+        this.movimentacoes.add(deposito);
     }
 
     public Double sacar(Double valor){
         if(this.saldo < valor){
             throw new InputMismatchException("Saldo insuficiente para realizar a operação. Saldo disponivel R$" + this.saldo);
         }
-        this.saldo -= valor;        
+        this.saldo -= valor;   
+        Movimentacao saque = new Movimentacao("Saída de valor ", valor);
+        this.movimentacoes.add(saque);     
         return valor;
+       
 
     }
 
     public void transferir(Double valor, ContaBancaria contaDestino){
         this.sacar(valor);
         contaDestino.depositar(valor);
+        
     }
-
-
     //#endregion
+
+    public abstract void imprimirSaldo();
 
     
     
