@@ -1,5 +1,6 @@
 package model;
 import java.util.*;
+import utils.DataUtil;
 
 public class ContaPoupanca extends ContaBancaria {
 
